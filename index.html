@@ -8,14 +8,16 @@
 </head>
 <body>
     <div id="configuracion">
-        <h2>Configuración del Juego</h2>
+        <h2>Registro de jugadores</h2>
         <input type="text" id="jugador1" placeholder="Nombre del Jugador 1">
         <input type="text" id="jugador2" placeholder="Nombre del Jugador 2">
         <input type="text" id="jugador3" placeholder="Nombre del Jugador 3">
         <input type="text" id="jugador4" placeholder="Nombre del Jugador 4">
         <input type="number" id="tamanoCarton" placeholder="Tamaño del Cartón (3-5)" min="3" max="5">
         <button id="iniciarJuego">Iniciar Juego</button>
+
     </div>
+
     <div id="juego" style="display:none;">
         <h2>Bingo Lucky Numbers</h2>
         <div id="cartones"></div>
@@ -23,6 +25,7 @@
         <div id="numeroActual"></div>
         <div id="turnos">Turno: <span id="contadorTurnos">0</span></div>
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>

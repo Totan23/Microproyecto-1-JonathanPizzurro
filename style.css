@@ -1,0 +1,180 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Righteous', cursive;
+    background: #2c3e50;
+    color: rgb(0, 0, 0);
+}
+
+#configuracion, #juego {
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 5%;
+}
+
+#configuracion h2 {
+    font-size: 2.5em;
+    color: #f39c12; 
+    text-shadow: 3px 3px #333; 
+}
+
+#configuracion input[type="text"],
+
+#configuracion input[type="number"] {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px;
+}
+
+#configuracion button {
+    padding: 15px 30px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#configuracion button:hover {
+    background-color: #c0392b;
+}
+
+#tituloBingo {
+    font-size: 48px; 
+    margin-bottom: 30px; 
+    color: #f39c12; 
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+#juego {
+    background-color: #343a40; 
+    color: #ffffff; 
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); 
+    width: auto; 
+    margin: 40px auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#cartones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    gap: 20px; 
+    padding: 20px; 
+}
+
+#sacarNumero {
+    background-color: #28a745; 
+    color: #fff;
+    padding: 20px 40px;
+    font-size: 1.5em; 
+    border-radius: 10px;
+    margin: 20px 0;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    transition: background-color 0.3s ease;
+}
+
+.carton {
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto repeat(5, 1fr); 
+    gap: 5px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+    align-items: center;
+    box-sizing: border-box; 
+    margin-bottom: 20px;
+    width: calc(50% - 40px); 
+    border: 3px solid #3498db; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px; 
+    transition: transform 0.2s;
+}
+
+.carton:hover {
+    transform: scale(1.05); 
+}
+
+.nombreJugador, #tituloBingo {
+    font-family: 'Righteous', cursive; 
+    color: #f39c12; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    grid-column: 1 / -1;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #ddd;
+    padding: 5px;
+}
+
+.casilla {
+    font-size: 1.5em;
+    border: 2px solid #113349;
+    height: 60px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: rgb(0, 0, 0); 
+    font-weight: bold;
+    position: relative; 
+    width: 80%;
+}
+
+.casilla:before {
+    content: '';
+    display: block;
+    padding-top: 100%; 
+}
+
+.casilla > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.casilla.marcada {
+    background-color: #2ecc71; 
+    color: #ffffff;
+}
+
+button {
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    #configuracion {
+        max-width: 600px;
+        margin: auto;
+    }
+}
+
+@media (max-width: 768px) { 
+    .carton {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 80%;
+    }
+}
