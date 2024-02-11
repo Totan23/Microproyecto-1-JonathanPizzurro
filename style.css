@@ -1,19 +1,31 @@
 body, html {
     height: 100%;
     margin: 0;
+    padding: 0;
     font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(135deg, #000428, #004e92);
+    background: #000428;
     color: #ffffff;
-    
+    overflow: hidden;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+    background-position: 0 0, 100px 200px, 300px 300px, 450px 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
 
 button {
     background-color: #0f0c29; 
     background-image: linear-gradient(315deg, #0f0c29 0%, #302b63 74%);
     border: 1px solid #3498db; 
     color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 0 15px #4fd1c5, 0 0 20px #4fd1c5 inset; 
+
 }
 
 button:hover {
@@ -76,7 +88,14 @@ button:hover {
 }
 
 #juego {
-    background-color: #343a40; 
+    background: #000428;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+    background-position: 0 0, 100px 200px, 300px 300px, 450px 100px;
     color: #ffffff; 
     padding: 20px;
     border-radius: 15px;
@@ -86,6 +105,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
 }
 
 #cartones {
@@ -97,15 +117,23 @@ button:hover {
 }
 
 #sacarNumero {
-    background-color: #28a745; 
-    color: #fff;
     padding: 20px 40px;
     font-size: 1.5em; 
     border-radius: 10px;
     margin: 20px 0;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
     transition: background-color 0.3s ease;
+    background-color: #0f0c29; 
+    background-image: linear-gradient(315deg, #0f0c29 0%, #302b63 74%);
+    border: 1px solid #3498db; 
+    color: #ffffff;
+    box-shadow: 0 0 15px #4fd1c5, 0 0 20px #4fd1c5 inset; 
+
+}
+
+#sacarNumero:hover {
+    background-image: linear-gradient(315deg, #302b63 0%, #0f0c29 74%);
+    transform: translateY(-2px);
 }
 
 #jugarDeNuevo {
@@ -145,6 +173,8 @@ button:hover {
     background-color: #0f0c29;
     border: 1px solid #3498db;
     color: #ffffff;
+    border: 2px solid #3498db;
+    box-shadow: 0 0 15px #4fd1c5, 0 0 20px #4fd1c5 inset;
 }
 
 .modal h2 {
@@ -173,7 +203,6 @@ button:hover {
 
 
 .carton {
-    background-color: #1e2022;
     color: #ffffff;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -185,10 +214,12 @@ button:hover {
     box-sizing: border-box; 
     margin-bottom: 20px;
     width: calc(50% - 40px); 
-    border: 2px solid #3498db;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin: 20px; 
     transition: transform 0.2s;
+    background-color: #2c3e50; 
+    border: 2px solid #3498db; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px #4fd1c5 inset;
+
 }
 
 .carton:hover {
@@ -266,8 +297,9 @@ button {
     border-radius: 10px;
     background: linear-gradient(145deg, #4b6cb7, #182848);
     color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    border: 2px solid #3498db;
+    box-shadow: 0 0 15px #4fd1c5, 0 0 20px #4fd1c5 inset;
 }
 
 .cerrarModalRanking {

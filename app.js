@@ -257,12 +257,6 @@ function mostrarPuntajesFinales() {
     mostrarRanking();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('jugarDeNuevo').addEventListener('click', function() {
-        window.location.reload();
-    });
-});
-
 function reiniciarJuego() {
     turnos = 0;
     numerosSacados = [];
@@ -272,14 +266,14 @@ function reiniciarJuego() {
     iniciarJuego(); 
 }
 
-document.getElementById('jugarDeNuevo').addEventListener('click', function() {
-    reiniciarJuego(); 
-});
-
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('volverAlRegistro').addEventListener('click', function() {
-        document.getElementById('juego').style.display = 'none';
-        document.getElementById('configuracion').style.display = 'block';
+    document.getElementById('volverAlRegistro').addEventListener('click', function(event) {
+        event.preventDefault();
+        const confirmacion = confirm("¿Estás seguro de que deseas volver al registro? Todos los datos actuales se perderán.");
+        
+        if (confirmacion) {
+            window.location.reload();
+        }
     });
 });
 
@@ -296,23 +290,6 @@ document.body.addEventListener('click', function(event) {
     if (event.target.classList.contains('close-modal')) {
         document.getElementById('modalPuntajes').style.display = 'none';
     }
-});
-
-document.getElementById('volverAlRegistro').addEventListener('click', function() {
-    const confirmacion = confirm("¿Estás seguro de que deseas volver al registro y reiniciar los puntajes y nombres? Si aceptas, todos los datos actuales se perderán.");
-    
-    if (confirmacion) {
-        window.location.reload();
-    }
-});
-
-document.getElementById('jugarDeNuevo').addEventListener('click', function() {
-    const confirmacion = confirm("¿Estás seguro de que deseas jugar de nuevo y reiniciar los puntajes y nombres? Si aceptas, todos los datos actuales se perderán.");
-    
-    if (confirmacion) {
-        window.location.reload();
-    }
-    
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -347,5 +324,16 @@ document.getElementById('mostrarRankingBtn').addEventListener('click', function(
 
 document.querySelector('.cerrarModalRanking').addEventListener('click', function() {
     document.getElementById('modalRanking').style.display = 'none';
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('jugarDeNuevo').addEventListener('click', function(event) {
+        event.preventDefault();
+        const confirmacion = confirm("¿Estás seguro de que deseas volver al registro? Todos los datos actuales se perderán.");
+        
+        if (confirmacion) {
+            window.location.reload();
+        }
+    });
 });
 
