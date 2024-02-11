@@ -109,6 +109,13 @@ function sacarNumero() {
     if (!numerosSacados.includes(numeroAleatorio)) {
         numerosSacados.push(numeroAleatorio);
         document.getElementById('numeroActual').textContent = `Número Actual: ${numeroAleatorio}`;
+
+        // Actualizar el historial de números sacados
+        const container = document.getElementById('numerosSacadosContainer');
+        const numeroElement = document.createElement('span');
+        numeroElement.textContent = numeroAleatorio + " ";
+        container.appendChild(numeroElement);
+
         marcarCartones(numeroAleatorio);
         turnos++;
         document.getElementById('contadorTurnos').textContent = turnos;
@@ -121,6 +128,7 @@ function sacarNumero() {
         sacarNumero();
     }
 }
+
 
 
 

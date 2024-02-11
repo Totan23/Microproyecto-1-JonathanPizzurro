@@ -150,6 +150,25 @@ button:hover {
     background-color: #45a049; 
 }
 
+#historialNumeros {
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+#numerosSacadosContainer span {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px;
+    background-color: #343a40; /* Ajusta al tema espacial */
+    color: #ffffff;
+    border-radius: 50%; /* Hace los números circulares */
+    width: 35px;
+    height: 35px;
+    line-height: 25px; /* Centra el texto verticalmente */
+}
+
+
 .modal {
     display: none;
     position: fixed; 
