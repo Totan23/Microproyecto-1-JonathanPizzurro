@@ -1,9 +1,24 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: 'Righteous', cursive;
-    background: #2c3e50;
-    color: rgb(0, 0, 0);
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #000428, #004e92);
+    color: #ffffff;
+    
+}
+
+button {
+    background-color: #0f0c29; 
+    background-image: linear-gradient(315deg, #0f0c29 0%, #302b63 74%);
+    border: 1px solid #3498db; 
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-image: linear-gradient(315deg, #302b63 0%, #0f0c29 74%);
+    transform: translateY(-2px);
 }
 
 #configuracion, #juego {
@@ -45,11 +60,19 @@ body, html {
     background-color: #c0392b;
 }
 
-#tituloBingo {
+#tituloRegistro {
     font-size: 48px; 
     margin-bottom: 30px; 
     color: #f39c12; 
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+#tituloBingo {
+    font-size: 1.5em;
+    color: #000000; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    margin-top: 20px; 
+    margin-bottom: 10px; 
 }
 
 #juego {
@@ -87,82 +110,83 @@ body, html {
 
 #jugarDeNuevo {
     padding: 10px 20px;
-    background-color: #4CAF50; /* Color de fondo verde */
-    color: white; /* Texto en color blanco */
+    background-color: #4CAF50;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px; /* Margen superior para separarlo del contenido de puntajes */
+    margin-top: 20px;
 }
 
 #jugarDeNuevo:hover {
-    background-color: #45a049; /* Oscurecer el botón ligeramente al pasar el ratón */
+    background-color: #45a049; 
 }
-
-#volverAlRegistro {
-    background-color: #3498db; /* Azul */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px; /* Asegura un poco de espacio entre los botones */
-    transition: background-color 0.3s;
-}
-
-#volverAlRegistro:hover {
-    background-color: #2980b9; /* Azul Oscuro */
-}
-
 
 .modal {
-    display: none; /* Ocultar el modal por defecto */
-    position: fixed; /* Mantenerlo en posición fija */
-    z-index: 1; /* Situarlo encima de todo */
+    display: none;
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    overflow: auto; /* Habilitar desplazamiento si es necesario */
-    background-color: rgba(0,0,0,0.6); /* Negro con mayor opacidad para mejor contraste */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); 
 }
 
 .modal-content {
-    position: relative;
-    background-color: #ffffff;
-    margin: 10% auto; /* Posicionamiento y margen mejorado */
+    position: relative; 
+    margin: 10% auto; 
     padding: 20px;
-    border-radius: 15px; /* Bordes redondeados */
-    width: 50%; /* Ancho ajustado para dispositivos de escritorio */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para dar efecto elevado */
-    text-align: center; /* Alineación central del texto */
+    border-radius: 15px; 
+    width: 50%; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+    text-align: center; 
+    background-color: #0f0c29;
+    border: 1px solid #3498db;
+    color: #ffffff;
 }
 
 .modal h2 {
-    color: #333; /* Color oscuro para el título */
-    margin: 0 0 20px 0; /* Ajuste de margen para el título */
+    color: #333; 
+    margin: 0 0 20px 0; 
 }
 
 .modal p {
-    font-size: 18px; /* Tamaño de fuente más grande para mejor lectura */
-    color: #555; /* Color suave para el texto */
+    font-size: 18px; 
+    color: #555; 
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    font-size: 24px; 
+    font-weight: bold;
+    color: rgb(184, 20, 20); 
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #ccc; 
 }
 
 
 .carton {
-    background-color: #ffffff;
+    background-color: #1e2022;
+    color: #ffffff;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto repeat(5, 1fr); 
     gap: 5px;
-    background-color: #f0f0f0;
     padding: 10px;
     border-radius: 10px;
     align-items: center;
     box-sizing: border-box; 
     margin-bottom: 20px;
     width: calc(50% - 40px); 
-    border: 3px solid #3498db; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #3498db;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin: 20px; 
     transition: transform 0.2s;
 }
@@ -173,30 +197,29 @@ body, html {
 
 .nombreJugador, #tituloBingo {
     font-family: 'Righteous', cursive; 
-    color: #f39c12; 
+    color: #4fd1c5;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     grid-column: 1 / -1;
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
     text-align: center;
-    background-color: #ddd;
+    background-color: #2c3e50;
     padding: 5px;
 }
 
 .casilla {
     font-size: 1.5em;
-    border: 2px solid #113349;
     height: 60px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    color: rgb(0, 0, 0); 
     font-weight: bold;
     position: relative; 
     width: 80%;
+    border: 2px solid #113349;
+    background-color: #2c3e50;
+    color: #ffffff;
 }
 
 .casilla:before {
@@ -214,12 +237,51 @@ body, html {
 }
 
 .casilla.marcada {
-    background-color: #2ecc71; 
-    color: #ffffff;
+    background-color: #4fd1c5; 
+    color: #000000;
 }
 
 button {
     margin-top: 20px;
+}
+
+.modalRanking {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content-ranking {
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #3498db;
+    width: 50%; 
+    border-radius: 10px;
+    background: linear-gradient(145deg, #4b6cb7, #182848);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.cerrarModalRanking {
+    color: #cccccc;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cerrarModalRanking:hover {
+    color: #ffffff;
 }
 
 @media (min-width: 768px) {

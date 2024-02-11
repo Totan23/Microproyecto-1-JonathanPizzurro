@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bingo Familiar</title>
+    <title>Space Bingo🛸👽</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900|Roboto+Condensed:300,400,700|Exo+2:400,400i,700,700i" rel="stylesheet">
+
 </head>
 <body>
     <div id="configuracion">
+        <h1 id="tituloJuego">Space Bingo🛸👽</h1>
         <h2>Registro de jugadores</h2>
         <input type="text" id="jugador1" placeholder="Nombre del Jugador 1">
         <input type="text" id="jugador2" placeholder="Nombre del Jugador 2">
@@ -15,7 +18,7 @@
         <input type="text" id="jugador4" placeholder="Nombre del Jugador 4">
         <input type="number" id="tamanoCarton" placeholder="Tamaño del Cartón (3-5)" min="3" max="5">
         <button id="iniciarJuego">Iniciar Juego</button>
-
+        <button id="mostrarRankingBtn">Ranking</button>
     </div>
 
     <div id="juego" style="display:none;">
@@ -32,7 +35,17 @@
             <h2>Puntajes Finales</h2>
             <div id="contenidoPuntajes"></div>
             <button id="jugarDeNuevo">Jugar de nuevo!</button>
-            <button class="verTop3">Ver Top 3</button>
+            <span class="close-modal" style="cursor:pointer;">&times;</span>
+        </div>
+    </div>
+    <div id="ranking">
+    </div>
+    <div id="modalRanking" class="modalRanking">
+        <div class="modal-content-ranking">
+            <span class="cerrarModalRanking">&times;</span>
+            <h2>Ranking de Jugadores</h2>
+            <div id="contenidoRanking">
+            </div>
         </div>
     </div>
     <script src="app.js"></script>

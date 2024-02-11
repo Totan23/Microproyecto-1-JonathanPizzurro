@@ -6,27 +6,42 @@ let tamanoCarton;
 
 function iniciarJuego() {
     tamanoCarton = parseInt(document.getElementById('tamanoCarton').value);
-    if (tamanoCarton < 3 || tamanoCarton > 5 || isNaN(tamanoCarton) ) {
+    if (tamanoCarton < 3 || tamanoCarton > 5 || isNaN(tamanoCarton)) {
         alert("Por favor, ingresa un tamaño de cartón entre 3 y 5.");
-        return; 
+        return;
     }
 
+    const nombresJugadores = [];
+    for (let i = 1; i <= 4; i++) {
+        let nombre = document.getElementById(`jugador${i}`).value.trim();
+        if (!nombre) {
+            alert(`Por favor, ingresa el nombre del Jugador ${i}.`);
+            return; 
+        }
+        nombresJugadores.push(nombre);
+    }
+
+    const nombresUnicos = new Set(nombresJugadores);
+    if (nombresUnicos.size !== nombresJugadores.length) {
+        alert("Por favor, asegúrate de que todos los jugadores tengan nombres únicos.");
+        return; 
+    }
     document.getElementById('configuracion').style.display = 'none';
     document.getElementById('juego').style.display = 'block';
     jugadores.length = 0;
 
-    for (let i = 1; i <= 4; i++) {
-        const nombre = document.getElementById(`jugador${i}`).value || `Jugador ${i}`;
+    nombresJugadores.forEach((nombre, index) => {
         jugadores.push({
             nombre: nombre,
             carton: generarCarton(tamanoCarton),
             puntaje: 0,
         });
-    }
+    });
 
     mostrarCartones();
     document.getElementById('sacarNumero').addEventListener('click', sacarNumero);
 }
+
 
 
 function generarCarton(tamano) {
@@ -136,8 +151,6 @@ function marcarCartones(numero) {
 function verificarGanador() {
     let ganador = false;
     let puntajeMaximo = 0;
-
-    // Calcular el puntaje máximo basado en el tamaño del cartón
     const tamano = jugadores[0].carton.length;
     puntajeMaximo += 5; // Cartón lleno
     puntajeMaximo += tamano * 2; // Líneas horizontales y verticales
@@ -162,7 +175,7 @@ function esCartonLleno(carton) {
             }
         }
     }
-    return true; // Todas las casillas están marcadas, es cartón lleno
+    return true; // si todas las casillas están marcadas, es cartón lleno
 }
 
 
@@ -191,7 +204,6 @@ function calcularPuntaje(carton) {
             puntaje += 1;
         }
 
-        // Verificar diagonales
         if (!carton[i][i].marcado) {
             diagonalPrincipalMarcada = false;
         }
@@ -223,18 +235,15 @@ function esCartonLleno(carton) {
 }
 
 function mostrarPuntajesFinales() {
-    let contenidoPuntajes = ""; // Asumimos que el título ya está en el HTML del modal
+    let contenidoPuntajes = "";
     let maxPuntaje = Math.max(...jugadores.map(jugador => jugador.puntaje));
     let ganadores = jugadores.filter(jugador => jugador.puntaje === maxPuntaje);
 
-    // Construir el contenido de puntajes para cada jugador
     jugadores.forEach(jugador => {
-        // Ajustar la palabra "punto/puntos" basado en el puntaje
         let textoPuntos = jugador.puntaje === 1 ? "punto" : "puntos";
         contenidoPuntajes += `<p>${jugador.nombre}: ${jugador.puntaje} ${textoPuntos}</p>`;
     });
 
-    // Agregar el ganador o los ganadores al contenido
     if (ganadores.length === 1) {
         let textoPuntosGanador = maxPuntaje === 1 ? "punto" : "puntos";
         contenidoPuntajes += `<p><strong>El ganador es: ${ganadores[0].nombre} con ${maxPuntaje} ${textoPuntosGanador}! 🏆</strong></p>`;
@@ -242,55 +251,101 @@ function mostrarPuntajesFinales() {
         let textoPuntosGanador = maxPuntaje === 1 ? "punto" : "puntos";
         contenidoPuntajes += `<p><strong>Tenemos un empate entre ${ganadores.map(g => g.nombre).join(', ')} con ${maxPuntaje} ${textoPuntosGanador} cada uno! 🏆</strong></p>`;
     }
-
-    // Actualizar el contenido del modal y mostrarlo
     document.getElementById('contenidoPuntajes').innerHTML = contenidoPuntajes;
     document.getElementById('modalPuntajes').style.display = 'block';
+    actualizarPuntajes(jugadores);
+    mostrarRanking();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Añadir evento de clic al botón "Jugar de nuevo"
     document.getElementById('jugarDeNuevo').addEventListener('click', function() {
-        window.location.reload(); // Recarga la página para reiniciar el juego
+        window.location.reload();
     });
 });
 
 function reiniciarJuego() {
-    // Restablece las variables del juego
     turnos = 0;
     numerosSacados = [];
-    jugadores = []; // Asegúrate de actualizar esta lógica conforme a tu implementación específica
-    // Limpia y regenera los elementos del DOM necesarios
+    jugadores = [];
     document.getElementById('numeroActual').textContent = '';
     document.getElementById('contadorTurnos').textContent = '0';
-    // Reinicia la configuración y visualización de los cartones, etc.
-    iniciarJuego(); // Suponiendo que tienes una función que inicializa el juego
+    iniciarJuego(); 
 }
 
-// Modificar el evento del botón Jugar de Nuevo para llamar a reiniciarJuego
 document.getElementById('jugarDeNuevo').addEventListener('click', function() {
     reiniciarJuego(); 
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Evento para volver al registro sin recargar la página
     document.getElementById('volverAlRegistro').addEventListener('click', function() {
-        // Ocultar sección del juego
         document.getElementById('juego').style.display = 'none';
-        
-        // Mostrar sección de configuración/registro
         document.getElementById('configuracion').style.display = 'block';
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var closeModalButton = document.querySelector('.close-modal');
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', function() {
+            document.getElementById('modalPuntajes').style.display = 'none';
+        });
+    }
+});
 
+document.body.addEventListener('click', function(event) {
+    if (event.target.classList.contains('close-modal')) {
+        document.getElementById('modalPuntajes').style.display = 'none';
+    }
+});
 
+document.getElementById('volverAlRegistro').addEventListener('click', function() {
+    const confirmacion = confirm("¿Estás seguro de que deseas volver al registro y reiniciar los puntajes y nombres? Si aceptas, todos los datos actuales se perderán.");
+    
+    if (confirmacion) {
+        window.location.reload();
+    }
+});
 
+document.getElementById('jugarDeNuevo').addEventListener('click', function() {
+    const confirmacion = confirm("¿Estás seguro de que deseas jugar de nuevo y reiniciar los puntajes y nombres? Si aceptas, todos los datos actuales se perderán.");
+    
+    if (confirmacion) {
+        window.location.reload();
+    }
+    
+});
 
+document.addEventListener('DOMContentLoaded', function() {
+    mostrarRanking();
+});
 
+function actualizarPuntajes(jugadores) {
+    let puntajes = JSON.parse(localStorage.getItem('puntajesBingo')) || {};
 
+    jugadores.forEach(jugador => {
+        if (puntajes[jugador.nombre]) {
+            puntajes[jugador.nombre] += jugador.puntaje;
+        } else {
+            puntajes[jugador.nombre] = jugador.puntaje;
+        }
+    });
+    localStorage.setItem('puntajesBingo', JSON.stringify(puntajes));
+}
 
+function mostrarRanking() {
+    let puntajes = JSON.parse(localStorage.getItem('puntajesBingo')) || {};
+    let entradasPuntajes = Object.entries(puntajes);
+    entradasPuntajes.sort((a, b) => b[1] - a[1]);
+    let htmlRanking = entradasPuntajes.map(([nombre, puntaje]) => `<p>${nombre}: ${puntaje} puntos</p>`).join('');
+    document.getElementById('contenidoRanking').innerHTML = htmlRanking;
+}
 
+document.getElementById('mostrarRankingBtn').addEventListener('click', function() {
+    document.getElementById('modalRanking').style.display = 'block';
+    mostrarRanking();
+});
 
-
+document.querySelector('.cerrarModalRanking').addEventListener('click', function() {
+    document.getElementById('modalRanking').style.display = 'none';
+});
 
