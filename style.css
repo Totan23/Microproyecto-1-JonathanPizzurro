@@ -85,6 +85,69 @@ body, html {
     transition: background-color 0.3s ease;
 }
 
+#jugarDeNuevo {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Texto en color blanco */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Margen superior para separarlo del contenido de puntajes */
+}
+
+#jugarDeNuevo:hover {
+    background-color: #45a049; /* Oscurecer el botón ligeramente al pasar el ratón */
+}
+
+#volverAlRegistro {
+    background-color: #3498db; /* Azul */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* Asegura un poco de espacio entre los botones */
+    transition: background-color 0.3s;
+}
+
+#volverAlRegistro:hover {
+    background-color: #2980b9; /* Azul Oscuro */
+}
+
+
+.modal {
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed; /* Mantenerlo en posición fija */
+    z-index: 1; /* Situarlo encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    overflow: auto; /* Habilitar desplazamiento si es necesario */
+    background-color: rgba(0,0,0,0.6); /* Negro con mayor opacidad para mejor contraste */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    margin: 10% auto; /* Posicionamiento y margen mejorado */
+    padding: 20px;
+    border-radius: 15px; /* Bordes redondeados */
+    width: 50%; /* Ancho ajustado para dispositivos de escritorio */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para dar efecto elevado */
+    text-align: center; /* Alineación central del texto */
+}
+
+.modal h2 {
+    color: #333; /* Color oscuro para el título */
+    margin: 0 0 20px 0; /* Ajuste de margen para el título */
+}
+
+.modal p {
+    font-size: 18px; /* Tamaño de fuente más grande para mejor lectura */
+    color: #555; /* Color suave para el texto */
+}
+
+
 .carton {
     background-color: #ffffff;
     display: grid;

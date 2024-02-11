@@ -6,8 +6,6 @@ let tamanoCarton;
 
 function iniciarJuego() {
     tamanoCarton = parseInt(document.getElementById('tamanoCarton').value);
-
-    // Validar el tamaño del cartón
     if (tamanoCarton < 3 || tamanoCarton > 5 || isNaN(tamanoCarton) ) {
         alert("Por favor, ingresa un tamaño de cartón entre 3 y 5.");
         return; 
@@ -41,7 +39,7 @@ function generarCarton(tamano) {
             const indiceAleatorio = Math.floor(Math.random() * numerosDisponibles.length);
             fila.push({
                 numero: numerosDisponibles[indiceAleatorio],
-                marcado: false, // Agregar indicador de si el número ha sido marcado
+                marcado: false, 
             });
             numerosDisponibles.splice(indiceAleatorio, 1);
         }
@@ -55,7 +53,7 @@ function generarCarton(tamano) {
 
 function mostrarCartones() {
     const contenedorCartones = document.getElementById('cartones');
-    contenedorCartones.innerHTML = ''; // Limpiar el contenedor antes de añadir nuevos cartones
+    contenedorCartones.innerHTML = ''; 
 
     jugadores.forEach(jugador => {
         const divCarton = document.createElement('div');
@@ -89,7 +87,7 @@ function mostrarCartones() {
 function sacarNumero() {
     if (turnos >= 25) {
         alert('El juego ha terminado por máximo de turnos alcanzados.');
-        mostrarPuntajesFinales(); // Mostrar puntajes finales
+        mostrarPuntajesFinales(); 
         return;
     }
     const numeroAleatorio = Math.floor(Math.random() * 50) + 1;
@@ -101,13 +99,15 @@ function sacarNumero() {
         document.getElementById('contadorTurnos').textContent = turnos;
         if (verificarGanador()) {
             alert('Tenemos un ganador!');
-            mostrarPuntajesFinales(); // Mostrar puntajes finales
-            document.getElementById('sacarNumero').disabled = true; // Deshabilitar botón
+            mostrarPuntajesFinales(); 
+            document.getElementById('sacarNumero').disabled = true; 
         }
     } else {
-        sacarNumero(); // Intentar de nuevo si el número ya ha salido
+        sacarNumero();
     }
 }
+
+
 
 function marcarCartones(numero) {
     jugadores.forEach(jugador => {
@@ -118,15 +118,12 @@ function marcarCartones(numero) {
                 }
             });
         });
-        // Calcular y actualizar el puntaje después de marcar el número
         jugador.puntaje = calcularPuntaje(jugador.carton);
     });
-    mostrarCartones(); // Refrescar la visualización de los cartones
-
-    // Verificar si hay un ganador después de actualizar los puntajes
+    mostrarCartones(); 
     if (verificarGanador() || turnos >= 25) {
-        mostrarPuntajesFinales(); // Mostrar puntajes finales
-        document.getElementById('sacarNumero').disabled = true; // Deshabilitar botón si hay un ganador o se alcanzan 25 turnos
+        mostrarPuntajesFinales();
+        document.getElementById('sacarNumero').disabled = true;
         if (turnos >= 25) {
             alert('El juego ha terminado por máximo de turnos alcanzados.');
         } else {
@@ -156,17 +153,17 @@ function verificarGanador() {
     return ganador;
 }
 
-// function esCartonLleno(carton) {
-//     // Verificar si todas las casillas del cartón están marcadas
-//     for (let i = 0; i < carton.length; i++) {
-//         for (let j = 0; j < carton[i].length; j++) {
-//             if (!carton[i][j].marcado) {
-//                 return false; // Encontró una casilla no marcada, por lo tanto, no es cartón lleno
-//             }
-//         }
-//     }
-//     return true; // Todas las casillas están marcadas, es cartón lleno
-// }
+function esCartonLleno(carton) {
+    // Verificar si todas las casillas del cartón están marcadas
+    for (let i = 0; i < carton.length; i++) {
+        for (let j = 0; j < carton[i].length; j++) {
+            if (!carton[i][j].marcado) {
+                return false; // Encontró una casilla no marcada, por lo tanto, no es cartón lleno
+            }
+        }
+    }
+    return true; // Todas las casillas están marcadas, es cartón lleno
+}
 
 
 function calcularPuntaje(carton) {
@@ -224,6 +221,69 @@ function esCartonLleno(carton) {
     }
     return true;
 }
+
+function mostrarPuntajesFinales() {
+    let contenidoPuntajes = ""; // Asumimos que el título ya está en el HTML del modal
+    let maxPuntaje = Math.max(...jugadores.map(jugador => jugador.puntaje));
+    let ganadores = jugadores.filter(jugador => jugador.puntaje === maxPuntaje);
+
+    // Construir el contenido de puntajes para cada jugador
+    jugadores.forEach(jugador => {
+        // Ajustar la palabra "punto/puntos" basado en el puntaje
+        let textoPuntos = jugador.puntaje === 1 ? "punto" : "puntos";
+        contenidoPuntajes += `<p>${jugador.nombre}: ${jugador.puntaje} ${textoPuntos}</p>`;
+    });
+
+    // Agregar el ganador o los ganadores al contenido
+    if (ganadores.length === 1) {
+        let textoPuntosGanador = maxPuntaje === 1 ? "punto" : "puntos";
+        contenidoPuntajes += `<p><strong>El ganador es: ${ganadores[0].nombre} con ${maxPuntaje} ${textoPuntosGanador}! 🏆</strong></p>`;
+    } else {
+        let textoPuntosGanador = maxPuntaje === 1 ? "punto" : "puntos";
+        contenidoPuntajes += `<p><strong>Tenemos un empate entre ${ganadores.map(g => g.nombre).join(', ')} con ${maxPuntaje} ${textoPuntosGanador} cada uno! 🏆</strong></p>`;
+    }
+
+    // Actualizar el contenido del modal y mostrarlo
+    document.getElementById('contenidoPuntajes').innerHTML = contenidoPuntajes;
+    document.getElementById('modalPuntajes').style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Añadir evento de clic al botón "Jugar de nuevo"
+    document.getElementById('jugarDeNuevo').addEventListener('click', function() {
+        window.location.reload(); // Recarga la página para reiniciar el juego
+    });
+});
+
+function reiniciarJuego() {
+    // Restablece las variables del juego
+    turnos = 0;
+    numerosSacados = [];
+    jugadores = []; // Asegúrate de actualizar esta lógica conforme a tu implementación específica
+    // Limpia y regenera los elementos del DOM necesarios
+    document.getElementById('numeroActual').textContent = '';
+    document.getElementById('contadorTurnos').textContent = '0';
+    // Reinicia la configuración y visualización de los cartones, etc.
+    iniciarJuego(); // Suponiendo que tienes una función que inicializa el juego
+}
+
+// Modificar el evento del botón Jugar de Nuevo para llamar a reiniciarJuego
+document.getElementById('jugarDeNuevo').addEventListener('click', function() {
+    reiniciarJuego(); 
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Evento para volver al registro sin recargar la página
+    document.getElementById('volverAlRegistro').addEventListener('click', function() {
+        // Ocultar sección del juego
+        document.getElementById('juego').style.display = 'none';
+        
+        // Mostrar sección de configuración/registro
+        document.getElementById('configuracion').style.display = 'block';
+    });
+});
+
+
 
 
 
